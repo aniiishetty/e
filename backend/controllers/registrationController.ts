@@ -43,48 +43,44 @@ const bufferToDataURL = (buffer: Buffer, mimeType: string): string => {
 };
 
 // Function to generate PDF from HTML
- const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+ const generatePDF = async (content: string): Promise<Buffer> => {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     const page = await browser.newPage();
 
     try {
-      await page.setContent(content, { waitUntil: 'networkidle0' });
+        await page.setContent(content, { waitUntil: 'networkidle0' });
     } catch (contentError: any) {
-      console.error('Error setting content:', contentError);
-      return res.status(500).json({ success: false, message: 'Error setting content', error: contentError.message });
+        console.error('Error setting content:', contentError);
+        throw new Error('Error setting content');
     }
 
     let pdfBuffer: Buffer;
     try {
-      const pdfArrayBuffer = await page.pdf({
-        format: 'A4',
-        printBackground: true,
-        margin: {
-          top: '40px',
-          right: '40px',
-          bottom: '40px',
-          left: '40px',
-        },
-      });
-      // Convert Uint8Array to Buffer
-      pdfBuffer = Buffer.from(pdfArrayBuffer);
+        const pdfArrayBuffer = await page.pdf({
+            format: 'A4',
+            printBackground: true,
+            margin: {
+                top: '40px',
+                right: '40px',
+                bottom: '40px',
+                left: '40px',
+            },
+        });
+        // Convert Uint8Array to Buffer
+        pdfBuffer = Buffer.from(pdfArrayBuffer);
     } catch (pdfError: any) {
-      console.error('Error generating PDF:', pdfError);
-      return res.status(500).json({ success: false, message: 'Error generating PDF', error: pdfError.message });
+        console.error('Error generating PDF:', pdfError);
+        throw new Error('Error generating PDF');
     }
 
     await browser.close();
 
-    // Log PDF buffer length for debugging
-    console.log('PDF buffer length:', pdfBuffer.length);
-
-    // Send the PDF as response
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'inline; filename="DailyLogReport.pdf"');
-    res.send(pdfBuffer);
+    return pdfBuffer;
+};
 
 export const registerUser = async (req: Request, res: Response) => {
     const { name, designation, collegeId, phone, email, reason, collegeName: newCollegeName, committeeMember } = req.body;
