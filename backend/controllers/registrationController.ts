@@ -24,8 +24,8 @@ export const upload = multer({
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'anishetty391@gmail.com',
-    pass: 'dbaqgxwsxmajreyt',
+    user: 'lmsad6123@gmail.com',
+    pass: 'xijxdmkupniydinn',
   },
 });
 
@@ -150,8 +150,8 @@ export const registerUser = async (req: Request, res: Response) => {
     });
 
     const confirmationMailOptions = {
-      from: 'anishetty391@gmail.com',
-      to: 'anishetty391@gmail.com',
+      from: 'lmsad6123@gmail.com',
+      to: 'lmsad6123@gmail.com',
       subject: 'New Registration',
       text: `A new user has registered with the following details:
 
@@ -381,8 +381,8 @@ Reason: ${reason}`,
        const pdfBuffer = await generatePDF(htmlContent);
 
         const mailOptions = {
-            from: 'anishetty391@gmail.com',
-            to: email,
+            from: 'lmsad6123@gmail.com',
+            to: 'lmsad6123@gmail.com',
             subject: 'Registration Confirmation',
             text: 'Thank you for registering. Please find your ID card attached.',
             attachments: [{
