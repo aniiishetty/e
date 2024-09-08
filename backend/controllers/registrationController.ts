@@ -153,8 +153,7 @@ export const registerUser = async (req: Request, res: Response) => {
       researchPaper: researchPaper?.buffer,
       eventId: parseInt(paddedEventId), // Assign the generated eventId
     });
-setTimeout(async () => {
-            try {
+
     const confirmationMailOptions = {
       from: 'lmsad6123@gmail.com',
       to: 'lmsad6123@gmail.com',
@@ -425,16 +424,12 @@ const mailOptions = {
   ]
 };
 
- await transporter.sendMail(mailOptions);
-                console.log('Invitation email sent successfully');
-            } catch (emailError) {
-                console.error('Error sending email:', emailError);
-            }
-        }, 2000); // Delay of 2 seconds
+res.status(201).json({ message: 'User registered successfully.' });
 
-        res.status(201).json({ message: 'User registered successfully. Email will be sent shortly.' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
+// Send the email after sending the response
+try {
+  await transporter.sendMail(mailOptions);
+  console.log('Email sent successfully');
+} catch (emailError) {
+  console.error('Error sending email:', emailError);
+}
