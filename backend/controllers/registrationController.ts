@@ -52,8 +52,12 @@ const generatePDF = async (htmlContent: string): Promise<Buffer> => {
         });
         const page = await browser.newPage();
         await page.setContent(htmlContent);
+        
+        // Generate the PDF as a Uint8Array
         const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
-        return pdfBuffer;
+        
+        // Convert the Uint8Array to a Buffer
+        return Buffer.from(pdfBuffer);
     } catch (error) {
         console.error('Error generating PDF:', error);
         throw error;
@@ -63,6 +67,7 @@ const generatePDF = async (htmlContent: string): Promise<Buffer> => {
         }
     }
 };
+
 
 
 export const registerUser = async (req: Request, res: Response) => {
