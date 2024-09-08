@@ -104,7 +104,8 @@ export const registerUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: 'Photo is required' });
         }
 
-        let college = null;
+        let college: College | null = null; // Explicitly type college as College | null
+
         if (designation === 'Chair Person' || designation === 'Principal') {
             if (!collegeId) {
                 return res.status(400).json({ message: 'College ID is required for this designation' });
