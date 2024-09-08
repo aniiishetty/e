@@ -9,13 +9,14 @@ interface RegistrationAttributes {
   collegeId?: number | null; 
   phone: string;
   email: string;
-  photo: Buffer; // Changed to non-optional
+  photo: Buffer;
   reason: 'To know about International Internship' | 'To know about Textbook' | 'To present research paper';
   researchPaper?: Buffer;
   committeeMember?: string | null; 
+  eventId?: number; // Marked as optional for creation, handled by auto-increment
 }
 
-interface RegistrationCreationAttributes extends Optional<RegistrationAttributes, 'id' | 'researchPaper' | 'collegeId' | 'committeeMember'> {}
+interface RegistrationCreationAttributes extends Optional<RegistrationAttributes, 'id' | 'researchPaper' | 'collegeId' | 'committeeMember' | 'eventId'> {}
 
 class Registration extends Model<RegistrationAttributes, RegistrationCreationAttributes> implements RegistrationAttributes {
   public id?: number;
@@ -24,10 +25,11 @@ class Registration extends Model<RegistrationAttributes, RegistrationCreationAtt
   public collegeId?: number | null; 
   public phone!: string;
   public email!: string;
-  public photo!: Buffer; // Changed to non-optional
+  public photo!: Buffer;
   public reason!: 'To know about International Internship' | 'To know about Textbook' | 'To present research paper';
   public researchPaper?: Buffer;
   public committeeMember?: string | null; 
+  public eventId?: number;
 }
 
 Registration.init(
@@ -47,7 +49,7 @@ Registration.init(
     },
     collegeId: {
       type: DataTypes.INTEGER,
-      allowNull: true, 
+      allowNull: true,
       references: {
         model: 'colleges',
         key: 'id',
@@ -64,7 +66,7 @@ Registration.init(
     },
     photo: {
       type: DataTypes.BLOB('long'),
-      allowNull: false, // Changed to false
+      allowNull: false,
     },
     reason: {
       type: DataTypes.ENUM(
@@ -78,16 +80,21 @@ Registration.init(
       type: DataTypes.BLOB('long'),
       allowNull: true,
     },
-   committeeMember: {
+    committeeMember: {
       type: DataTypes.STRING,
-      allowNull: true, 
+      allowNull: true,
+    },
+    eventId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
     },
   },
   {
     sequelize,
     tableName: 'registrations',
     timestamps: true,
-  }
+  },
 );
 
 Registration.belongsTo(College, { foreignKey: 'collegeId', as: 'college' });
