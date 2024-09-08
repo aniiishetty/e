@@ -379,8 +379,9 @@ Reason: ${reason}`,
         `;
 
        const pdfBuffer = await generatePDF(htmlContent);
+const invitePdf = fs.readFileSync('invite.pdf');
 
-        const mailOptions = {
+const mailOptions = {
   from: 'lmsad6123@gmail.com',
   to: 'lmsad6123@gmail.com',
   subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
@@ -404,21 +405,28 @@ Reason: ${reason}`,
     <p>We are honoured to welcome you to this event and look forward to hosting you.</p>
     <p>Warm regards,<br><b>Welcome Committee</b></p>
   `,
-            attachments: [{
-                filename: 'IDCard.pdf',
-                content: pdfBuffer,
-                encoding: 'base64'
-            }]
-        };
+  attachments: [
+    {
+      filename: 'IDCard.pdf',
+      content: pdfBuffer,
+      encoding: 'base64'
+    },
+    {
+      filename: 'invite.pdf',
+      content: invitePdf,
+      encoding: 'base64'
+    }
+  ]
+};
 
-        try {
-            await transporter.sendMail(mailOptions);
-            console.log('Email sent successfully');
-        } catch (emailError) {
-            console.error('Error sending email:', emailError);
-            res.status(500).json({ message: 'Error sending email' });
-            return;
-        }
+try {
+  await transporter.sendMail(mailOptions);
+  console.log('Email sent successfully');
+} catch (emailError) {
+  console.error('Error sending email:', emailError);
+  res.status(500).json({ message: 'Error sending email' });
+  return;
+}
         res.status(201).json({ message: 'User registered successfully and email sent with ID card.' });
     } catch (error) {
         console.error(error);
