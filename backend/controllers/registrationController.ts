@@ -5,6 +5,7 @@ import { Registration } from '../models/Registration';
 import { College } from '../models/College';
 import nodemailer from 'nodemailer';
 import puppeteer from 'puppeteer';
+import * as fs from 'fs';
 
 // Define FileFields interface
 interface FileFields {
