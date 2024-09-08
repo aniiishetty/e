@@ -378,7 +378,7 @@ Reason: ${reason}`,
         </html>
         `;
 
-        const pdfBuffer = await generatePDF(htmlContent);
+       const pdfBuffer = await generatePDF(htmlContent);
 
         const mailOptions = {
             from: 'anishetty391@gmail.com',
@@ -392,8 +392,14 @@ Reason: ${reason}`,
             }]
         };
 
-        await transporter.sendMail(mailOptions);
-
+        try {
+            await transporter.sendMail(mailOptions);
+            console.log('Email sent successfully');
+        } catch (emailError) {
+            console.error('Error sending email:', emailError);
+            res.status(500).json({ message: 'Error sending email' });
+            return;
+        }
         res.status(201).json({ message: 'User registered successfully and email sent with ID card.' });
     } catch (error) {
         console.error(error);
