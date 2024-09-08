@@ -44,13 +44,26 @@ const bufferToDataURL = (buffer: Buffer, mimeType: string): string => {
 
 // Function to generate PDF from HTML
 const generatePDF = async (htmlContent: string): Promise<Buffer> => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent(htmlContent);
-    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
-    await browser.close();
-    return pdfBuffer as Buffer; // Explicitly cast pdfBuffer to Buffer
+    let browser;
+    try {
+        browser = await puppeteer.launch({
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
+        const page = await browser.newPage();
+        await page.setContent(htmlContent);
+        const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+        return pdfBuffer;
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        throw error;
+    } finally {
+        if (browser) {
+            await browser.close();
+        }
+    }
 };
+
 
 export const registerUser = async (req: Request, res: Response) => {
     const { name, designation, collegeId, phone, email, reason, collegeName: newCollegeName, committeeMember } = req.body;
