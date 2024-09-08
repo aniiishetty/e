@@ -5,7 +5,10 @@ import { Registration } from '../models/Registration';
 import { College } from '../models/College';
 import nodemailer from 'nodemailer';
 import puppeteer from 'puppeteer';
-import * as fs from 'fs';
+import * as path from 'path'; // Import the path module
+
+// Define the path to the invite.pdf file
+const invitePdfPath = path.join(__dirname, 'invite.pdf'); 
 
 // Define FileFields interface
 interface FileFields {
@@ -380,7 +383,7 @@ Reason: ${reason}`,
         `;
 
        const pdfBuffer = await generatePDF(htmlContent);
-const invitePdf = fs.readFileSync('invite.pdf');
+ const invitePdf = fs.readFileSync(invitePdfPath);
 
 const mailOptions = {
   from: 'lmsad6123@gmail.com',
