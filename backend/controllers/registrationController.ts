@@ -384,7 +384,7 @@ Reason: ${reason}`,
             from: 'lmsad6123@gmail.com',
             to: 'lmsad6123@gmail.com',
             subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
-            text: 'Respected ${name},
+            text:  text: `Respected ${name},
 
 Greetings from the International Institute of Medical Science & Technology Council (IIMSTC).
 
@@ -395,7 +395,7 @@ An identity card is attached to this email. Please ensure you bring this ID for 
 We are honoured to welcome you to this event and look forward to hosting you.
 
 Warm regards,
-Welcome Committee',
+Welcome Committee`,
             attachments: [{
                 filename: 'IDCard.pdf',
                 content: pdfBuffer,
