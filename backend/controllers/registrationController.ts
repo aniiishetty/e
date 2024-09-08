@@ -381,21 +381,29 @@ Reason: ${reason}`,
        const pdfBuffer = await generatePDF(htmlContent);
 
         const mailOptions = {
-            from: 'lmsad6123@gmail.com',
-            to: 'lmsad6123@gmail.com',
-            subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
-            text: `Respected **${name}**,
-
-Greetings from the **International Institute of Medical Science & Technology Council (IIMSTC)**.
-
-Thank you for registering as a Special Guest/Guest at our upcoming international event, **"Diamond Beneath Your Feet,"** on **Monday**, **September 23, 2024,** at **Hotel Lalith Ashok, Bangalore,** from **10 AM to 1 PM.** This prestigious event will feature a major announcement about **international internship opportunities** for economically underprivileged Indian students, including **stipends and scholarships**.
-
-An **identity card** is attached to this email. Please ensure you bring this ID for entry purposes. Kindly note, entry is exclusive to the registered guest, and **nominees, proxy representatives, personal assistants, secretaries, or drivers** will not be permitted in the hall.
-
-We are honoured to welcome you to this event and look forward to hosting you.
-
-Warm regards,
-**Welcome Committee**`,
+  from: 'lmsad6123@gmail.com',
+  to: 'lmsad6123@gmail.com',
+  subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
+  html: `
+    <p>Respected <b>${name}</b>,</p>
+    <p>Greetings from the <b>International Institute of Medical Science & Technology Council (IIMSTC)</b>.</p>
+    <p>
+      Thank you for registering as a <b>Special Guest/Guest</b> at our upcoming international event, 
+      <b>"Diamond Beneath Your Feet,"</b> on <b>Monday, September 23, 2024</b>, at 
+      <b>Hotel Lalith Ashok, Bangalore</b>, from <b>10 AM to 1 PM</b>.
+      This prestigious event will feature a major announcement about 
+      <b>international internship opportunities</b> for economically underprivileged Indian students, 
+      including <b>stipends and scholarships</b>.
+    </p>
+    <p>
+      An <b>identity card</b> is attached to this email. Please ensure you bring this ID for entry purposes. 
+      Kindly note, entry is exclusive to the registered guest, and 
+      <b>nominees, proxy representatives, personal assistants, secretaries, or drivers</b> 
+      will not be permitted in the hall.
+    </p>
+    <p>We are honoured to welcome you to this event and look forward to hosting you.</p>
+    <p>Warm regards,<br><b>Welcome Committee</b></p>
+  `
             attachments: [{
                 filename: 'IDCard.pdf',
                 content: pdfBuffer,
