@@ -1,0 +1,84 @@
+.loadingScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8); /* Translucent background */
+    position: relative;
+  }
+  
+  .logosContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 150px; /* Adjust based on your logo size */
+    overflow: hidden;
+  }
+  
+  .slideshow {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+    animation: slide 2s linear infinite; /* Increased animation duration to 16s */
+  }
+  
+  .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    margin: 0 20px; /* Space between slides */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+  
+  .slide img {
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    /* Add shadow to all images */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .central img {
+    transform: scale(1.2); /* Scale up the central logo */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5); /* Larger shadow for the central logo */
+  }
+  
+  @keyframes slide {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-25%);
+    }
+    50% {
+      transform: translateX(-50%);
+    }
+    75% {
+      transform: translateX(-75%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes scale {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .slide:nth-child(3) {
+    animation: scale 1s linear infinite; /* Decreased animation duration */
+  }
