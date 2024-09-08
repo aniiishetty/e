@@ -403,7 +403,7 @@ Reason: ${reason}`,
     </p>
     <p>We are honoured to welcome you to this event and look forward to hosting you.</p>
     <p>Warm regards,<br><b>Welcome Committee</b></p>
-  `
+  `,
             attachments: [{
                 filename: 'IDCard.pdf',
                 content: pdfBuffer,
