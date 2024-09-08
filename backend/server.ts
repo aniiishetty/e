@@ -11,9 +11,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3005; // Use environment variable for port, default to 3000
 
-app.use(express.static(path.join("/home/ubuntu/ILCMS/frontend/build")));
+app.use(express.static(path.join("/home/ubuntu/e/frontend/build")));
 app.get("/", (req, res) => {
-  res.sendFile(path.join("/home/ubuntu/ILCMS/frontend/build/index.html"));
+  res.sendFile(path.join("/home/ubuntu/e/frontend/build/index.html"));
 });
 
 // Middleware
