@@ -5,7 +5,8 @@ import { Registration } from '../models/Registration';
 import { College } from '../models/College';
 import nodemailer from 'nodemailer';
 import puppeteer from 'puppeteer';
-import * as path from 'path'; // Import the path module
+import * as path from 'path';
+import fs from 'fs';// Import the path module
 
 // Define the path to the invite.pdf file
 const invitePdfPath = path.join(__dirname, 'invite.pdf'); 
