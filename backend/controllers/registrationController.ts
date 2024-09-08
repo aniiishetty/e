@@ -384,7 +384,7 @@ Reason: ${reason}`,
             from: 'lmsad6123@gmail.com',
             to: 'lmsad6123@gmail.com',
             subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
-            text:  text: `Respected ${name},
+            text: `Respected ${name},
 
 Greetings from the International Institute of Medical Science & Technology Council (IIMSTC).
 
