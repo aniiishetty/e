@@ -388,7 +388,7 @@ Reason: ${reason}`,
 
 const mailOptions = {
   from: 'lmsad6123@gmail.com',
-  to: 'lmsad6123@gmail.com',
+  to: email,
   subject: 'Invitation Confirmation for "Diamond Beneath Your Feet" Event',
   html: `
     <p>Respected <b>${name}</b>,</p>
