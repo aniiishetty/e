@@ -353,7 +353,7 @@ Reason: ${reason}`,
                       <p style="text-align: right; font-weight: bold; font-size: 1.2rem;">Event ID: ${eventId}</p>
                         <h2>${name}</h2>
                         <h3>${designation}</h3>
-                        <h4>${designation === 'Council Member' ? ` ${committeeMember || 'IIMSTC Council Member'}` : `College: ${college ? college.name : 'N/A'}`}</h4>
+                        <h4>${designation === 'Council Member' ? ` ${committeeMember || 'IIMSTC Council Member'}` : ` ${college ? college.name : 'N/A'}`}</h4>
                       </div>
                       <div class="card-body">
                         <p>
