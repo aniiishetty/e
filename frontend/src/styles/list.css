@@ -1,0 +1,86 @@
+/* Base styles */
+.registration-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Grid view styles */
+  .registration-list.grid {
+    flex-direction: row;
+  }
+  
+  /* List view styles */
+  .registration-list.list {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .registration-card {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .registration-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .registration-card img {
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .registration-card h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .registration-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  /* Controls */
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  button.active {
+    background-color: #0056b3;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
