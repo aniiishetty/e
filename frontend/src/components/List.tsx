@@ -28,7 +28,7 @@ const List: React.FC = () => {
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        const response = await axios.get<Registration[]>('http://localhost:3000/api/registrations'); // Replace with your API endpoint
+        const response = await axios.get<Registration[]>('/api/registrations'); // Replace with your API endpoint
         console.log(response.data); // Log the data to verify
         setRegistrations(response.data);
         setLoading(false);
